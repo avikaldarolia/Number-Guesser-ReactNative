@@ -3,9 +3,9 @@ import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient"
 import { useFonts } from "expo-font"
 import AppLoading from 'expo-app-loading';
+import Colors from './constants/colors';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
-import Colors from './constants/colors';
 import GameOverScreen from './screens/GameOverScreen';
 
 export default function App() {
@@ -29,9 +29,11 @@ export default function App() {
   }
 
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />
+
   if (userNumber) {
     screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
   }
+
   if (gameIsOver && userNumber) {
     screen = <GameOverScreen />
   }

@@ -25,7 +25,7 @@ function GameScreen({ userNumber, onGameOver }) {
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
 
     useEffect(() => {
-        if (currentGuess === userNumber) {
+        if (currentGuess == userNumber) {
             console.log("Cur:", currentGuess, " UserNum:", userNumber);
             onGameOver();
         }
@@ -47,6 +47,7 @@ function GameScreen({ userNumber, onGameOver }) {
         }
         const newRndNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
         setCurrentGuess(newRndNumber)
+        return;
     }
 
     return (

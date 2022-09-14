@@ -1,10 +1,28 @@
+import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native"
-import Title from "../components/Title"
+import NumberContainer from "../components/game/NumberContainer";
 
-function GameScreen() {
+import Title from "../components/ui/Title";
+
+function GameScreen({ userNumber }) {
+    const initialGuess = generateRandomBetween(1, 100, userNumber)
+    const [currentGuess, setCurrentGuess] = useState(initialGuess)
+    function generateRandomBetween(min, max, exclude) {
+        const rndNum = Math.floor(Math.random() * (max - min)) + min;
+
+        if (rndNum === exclude) {
+            return generateRandomBetween(min, max, exclude);
+        } else {
+            return rndNum;
+        }
+    }
+
     return (
         <View style={styles.screen}>
-            <Title>Opponent's Guess</Title>
+            <View style={styles.mt}>
+                <Title>Opponent's Guess</Title>
+            </View>
+            <NumberContainer>{currentGuess}</NumberContainer>
             <View>
                 <Text>Higher or Lower?</Text>
 
@@ -20,5 +38,8 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 24,
+    },
+    mt: {
+        marginTop: 100
     }
 })

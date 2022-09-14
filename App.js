@@ -25,14 +25,15 @@ export default function App() {
     setUserNumber(pickedNumber)
     setGameIsOver(false)
   }
-  function gameOverHandler() {
+  function gameOverHandler(numberOfRounds) {
     setGameIsOver(true)
+    setGuessRounds(numberOfRounds)
   }
   function startNewGameHandler(){
     setUserNumber(null)
     setGuessRounds(0)
   }
-  
+
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />
 
   if (userNumber) {
